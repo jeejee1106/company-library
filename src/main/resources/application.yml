@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://218.39.10.59:3306/library?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false&allowMultiQueries=true&autoreconnect=true
+    username: ezpmp
+    password: dlwmvldpavl
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+server:
+  port: 8080
+
+ezpmp:
+  swagger:
+    base-package: "com.example.companylibray"
+    enabled: true
