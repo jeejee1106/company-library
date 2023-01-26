@@ -5,14 +5,19 @@ spring:
     username: ezpmp
     password: dlwmvldpavl
 
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
 
 server:
-  port: 8080
-
-ezpmp:
-  swagger:
-    base-package: "com.example.companylibray"
-    enabled: true
+  port: 8070
