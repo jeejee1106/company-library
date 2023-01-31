@@ -1,6 +1,7 @@
-package com.example.companylibrary;
+package com.example.companylibrary.config;
 
-import lombok.RequiredArgsConstructor;
+import com.example.companylibrary.repository.jpa.JpaUserRepository;
+import com.example.companylibrary.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

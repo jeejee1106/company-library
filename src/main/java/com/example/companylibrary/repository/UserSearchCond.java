@@ -1,16 +1,19 @@
-package com.example.companylibrary;
+package com.example.companylibrary.repository;
 
 import lombok.Data;
 
 @Data
-public class UserUpdateDto {
+public class UserSearchCond {
+
     private String userName;
     private String department;
-    public UserUpdateDto() {
+
+    public UserSearchCond(){
+
     }
-    public UserUpdateDto(String userName, String department) {
+
+    public UserSearchCond(String userName, String department){
         this.userName = userName;
         this.department = department;
     }
 }
-
