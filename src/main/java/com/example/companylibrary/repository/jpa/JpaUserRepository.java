@@ -23,6 +23,7 @@ public class JpaUserRepository implements UserRepository {
     public JpaUserRepository(EntityManager em){
         this.em = em;
     }
+
     @Override
     public User save(User user){
         em.persist(user);
@@ -33,22 +34,17 @@ public class JpaUserRepository implements UserRepository {
         User findUser = em.find(User.class, userId);
         findUser.setUserName(updateParam.getUserName());
         findUser.setDepartment(updateParam.getDepartment());
-
     }
+
     @Override
-    public Optional<User> findById(Long id){
+    public Optional<User> findById(Long id) {
         User user = em.find(User.class, id);
         return Optional.ofNullable(user);
     }
 
     @Override
-    public List<User> findAll(UserSearchCond cond){
-        String jpql = "select u from User u";
-
-        List<User> result = em.createQuery(jpql, User.class)
-                .getResultList();
-
-        return result;
+    public List<User> findAll(UserSearchCond cond) {
+        return null;
     }
 
 
