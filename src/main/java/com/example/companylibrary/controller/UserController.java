@@ -21,9 +21,9 @@ public class UserController {
         return userRepository.save(user);
     }
 
-    @PostMapping("/{itemId}/update")
-    public void edit(@PathVariable Long itemId, @ModelAttribute UserUpdateDto updateParam) {
-        userRepository.update(itemId, updateParam);
+    @PostMapping("/{userId}/update")
+    public void edit(@PathVariable Long userId, @ModelAttribute UserUpdateDto updateParam) {
+        userRepository.update(userId, updateParam);
     }
 
     @GetMapping("/{userId}")
