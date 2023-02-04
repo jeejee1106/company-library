@@ -22,14 +22,4 @@ public class User {
     private LocalDateTime updateDate;
     private String deleteYn;
 
-    public User(){
-
-    }
-    public User(String userId, String password, String userName, String department, String position){
-        this.userId = userId;
-        this.password = password;
-        this.userName = userName;
-        this.department = department;
-        this.position = position;
-    }
 }

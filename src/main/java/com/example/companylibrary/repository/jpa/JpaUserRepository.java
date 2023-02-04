@@ -4,6 +4,7 @@ import com.example.companylibrary.entity.User;
 import com.example.companylibrary.repository.UserUpdateDto;
 import com.example.companylibrary.repository.UserRepository;
 import com.example.companylibrary.repository.UserSearchCond;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
@@ -19,9 +20,11 @@ public class JpaUserRepository implements UserRepository {
 
 
     private final EntityManager em;
+    private final JPAQueryFactory query;
 
     public JpaUserRepository(EntityManager em){
         this.em = em;
+        this.query = new JPAQueryFactory(em);
     }
 
     @Override
