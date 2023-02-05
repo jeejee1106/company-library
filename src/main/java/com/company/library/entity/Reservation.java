@@ -1,7 +1,6 @@
-package com.example.companylibrary.entity;
+package com.company.library.entity;
 
 import lombok.Data;
-import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,18 +10,16 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-public class Loan {
-
+public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long no;
     private int bookNo;
     private int userNo;
-    private LocalDateTime loanDate;
-    private LocalDateTime dueDate;
-    private LocalDateTime returnDate;
     private int status;
-    private int overDueDays;
+    private LocalDateTime createDate;
+    private LocalDateTime updateDate;
+
 
 
 }

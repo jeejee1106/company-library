@@ -1,4 +1,4 @@
-package com.example.companylibrary.entity;
+package com.company.library.entity;
 
 import lombok.Data;
 

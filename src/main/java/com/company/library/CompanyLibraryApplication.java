@@ -1,6 +1,5 @@
-package com.example.companylibrary;
+package com.company.library;
 
-import com.example.companylibrary.config.JpaConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +15,6 @@ import static org.springframework.web.servlet.function.RouterFunctions.route;
 
 @SpringBootApplication
 @Slf4j
-@Import(JpaConfig.class)
 public class CompanyLibraryApplication {
 
 	public static void main(String[] args) {

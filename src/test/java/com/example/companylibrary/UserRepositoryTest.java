@@ -1,12 +1,8 @@
 package com.example.companylibrary;
 
-import com.example.companylibrary.config.JpaConfig;
-import com.example.companylibrary.repository.UserSearchCond;
-import com.example.companylibrary.repository.UserUpdateDto;
-import com.example.companylibrary.entity.User;
-import com.example.companylibrary.repository.UserRepository;
+import com.company.library.entity.User;
+import com.company.library.repository.UserRepository;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;

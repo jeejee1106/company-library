@@ -1,4 +1,4 @@
-package com.example.companylibrary.entity;
+package com.company.library.entity;
 
 import lombok.Data;
 
@@ -10,17 +10,18 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-public class Book {
+public class Loan {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long no;
+    private int bookNo;
+    private int userNo;
+    private LocalDateTime loanDate;
+    private LocalDateTime dueDate;
+    private LocalDateTime returnDate;
+    private int status;
+    private int overDueDays;
 
-    private String title;
-    private int libraryNo;
-    private String statusYn;
-    private String reservationStatusYn;
-    private LocalDateTime createDate;
-    private LocalDateTime updateDate;
-    private String deleteYn;
 
 }
