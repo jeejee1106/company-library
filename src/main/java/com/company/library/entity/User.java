@@ -18,8 +18,8 @@ public class User {
     private String position;
     private String role;
     private String loanAvailability;
-    private LocalDateTime createDate;
-    private LocalDateTime updateDate;
-    private String deleteYn;
+    private LocalDateTime createDt;
+    private LocalDateTime updateDt;
+    private String delYn;
 
 }
