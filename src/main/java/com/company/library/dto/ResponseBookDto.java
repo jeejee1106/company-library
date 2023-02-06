@@ -31,4 +31,5 @@ public class ResponseBookDto {
         this.delYn = entity.getDelYn();
     }
 
+    public ResponseBookDto(Optional<Book> book) { }
 }
