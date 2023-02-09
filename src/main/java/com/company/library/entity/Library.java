@@ -1,22 +1,29 @@
 package com.company.library.entity;
 
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
+import javax.persistence.*;
 
-@Data
 @Entity
-public class Library {
+@Getter
+@NoArgsConstructor
+public class Library extends BaseTimeEntity{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long no;
 
+    @Column(nullable = false)
     private String name;
-    private LocalDateTime createDate;
-    private LocalDateTime updateDate;
-    private String deleteYn;
+
+    @Column(nullable = false)
+    private String delYn;
+
+    @Builder
+    public Library(String name, String delYn) {
+        this.name = name;
+        this.delYn = delYn;
+    }
 }
