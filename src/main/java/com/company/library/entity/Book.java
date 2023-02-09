@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @NoArgsConstructor
-public class Book {
+public class Book extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookNo;
@@ -19,8 +19,6 @@ public class Book {
     private int libraryNo;
     private String statusYn;
     private String reservationStatusYn;
-    private LocalDateTime createDt;
-    private LocalDateTime updateDt;
     private String delYn;
 
     @Builder
@@ -29,8 +27,6 @@ public class Book {
                 int libraryNo,
                 String statusYn,
                 String reservationStatusYn,
-                LocalDateTime createDt,
-                LocalDateTime updateDt,
                 String delYn
     ){
         this.bookNo = bookNo;
@@ -38,8 +34,6 @@ public class Book {
         this.libraryNo = libraryNo;
         this.statusYn = statusYn;
         this.reservationStatusYn = reservationStatusYn;
-        this.createDt = createDt;
-        this.updateDt = updateDt;
         this.delYn = delYn;
     }
 
