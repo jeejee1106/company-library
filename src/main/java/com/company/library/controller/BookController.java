@@ -30,13 +30,13 @@ public class BookController {
     public ResponseEntity<BookDto.ResponseBookListDto> getAllBooks(){
         return new ResponseEntity<>(bookService.findAll(), HttpStatus.OK);
     }
-/*
-    @PostMapping("/update/{bookNo}")
-    public ResponseEntity<BookDto.ResponseBookDto> updateBook(@PathVariable Long bookNo, BookDto.RequestBookDto book){
-        bookService.updateById(bookNo, book);
-        return new ResponseEntity<>(book, HttpStatus.OK);
+
+    @PatchMapping("/{bookNo}")
+    public ResponseEntity<BookDto.ResponseBookDto> updateBook(BookDto.UpdateBookDto book){
+        return new ResponseEntity<>(bookService.updateById(book), HttpStatus.OK);
     }
 
+/*
     @PostMapping("/delete/{bookNo}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long bookNo){
         bookService.deleteById(bookNo);

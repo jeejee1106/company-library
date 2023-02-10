@@ -74,4 +74,29 @@ public class BookDto {
         }
     }
 
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    public class UpdateBookDto {
+
+        private Long bookNo;
+        private String title;
+        private int libraryNo;
+        private String statusYn;
+        private String reservationStatusYn;
+        private String delYn;
+
+
+        public Book toEntity(){
+            return Book.builder()
+                    .bookNo(bookNo)
+                    .title(title)
+                    .libraryNo(libraryNo)
+                    .statusYn(statusYn)
+                    .reservationStatusYn(reservationStatusYn)
+                    .delYn(delYn)
+                    .build();
+        }
+    }
 }

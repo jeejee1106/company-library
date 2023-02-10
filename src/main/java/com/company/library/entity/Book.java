@@ -3,13 +3,14 @@ package com.company.library.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Getter
 @Entity
 @NoArgsConstructor
+@DynamicUpdate //변경 필드만 반영
 public class Book extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +38,14 @@ public class Book extends BaseTimeEntity{
         this.delYn = delYn;
     }
 
+    public void update(Book book) {
+        this.bookNo = book.getBookNo();
+        this.title = book.getTitle();
+        this.libraryNo = book.getLibraryNo();
+        this.statusYn = book.getStatusYn();
+        this.reservationStatusYn = book.getReservationStatusYn();
+        this.delYn = book.getDelYn();
+    }
 
 
 }

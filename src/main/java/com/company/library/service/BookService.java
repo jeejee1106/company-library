@@ -29,23 +29,14 @@ public class BookService {
         List<Book> entity = bookRepository.findAll();
         return new BookDto.ResponseBookListDto(entity);
     }
-/*
-    public void updateById(Long bookNo, BookDto.RequestBookDto book){
-        Optional<Book> findBook = bookRepository.findById(bookNo);
-
-        if(findBook.isPresent()){
-
-            *//*findBook.get().setBookNo(book.getBookNo());
-            findBook.get().setLibraryNo(book.getLibraryNo());
-            findBook.get().setTitle(book.getTitle());
-            findBook.get().setStatusYn(book.getStatusYn());
-            findBook.get().setReservationStatusYn(book.getReservationStatusYn());
-            findBook.get().setCreateDt(book.getCreateDt());
-            findBook.get().setUpdateDt(book.getUpdateDt());
-            findBook.get().setDelYn(book.getDelYn());*//*
-        }
+    public BookDto.ResponseBookDto updateById(BookDto.UpdateBookDto book){
+        Book entity = bookRepository.findById(book.getBookNo()).orElseThrow(() -> new IllegalArgumentException());
+        entity.update(book.toEntity());
+        bookRepository.save(entity);
+        return new BookDto.ResponseBookDto(entity);
     }
 
+/*
     public void deleteById(Long bookNo){
         bookRepository.deleteById(bookNo);
     }*/
