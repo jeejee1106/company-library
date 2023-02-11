@@ -1,14 +1,13 @@
 package com.company.library.controller;
 
 import com.company.library.dto.BookDto;
-import com.company.library.entity.Book;
 import com.company.library.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,10 +35,9 @@ public class BookController {
         return new ResponseEntity<>(bookService.updateById(book), HttpStatus.OK);
     }
 
-/*
-    @PostMapping("/delete/{bookNo}")
-    public ResponseEntity<Void> deleteBook(@PathVariable Long bookNo){
-        bookService.deleteById(bookNo);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }*/
+    @DeleteMapping("/{bookNo}")
+    public ResponseEntity<Map<String, Object>> deleteById(@PathVariable Long bookNo) {
+        return bookService.deleteById(bookNo);
+    }
+
 }
