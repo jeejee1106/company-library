@@ -30,6 +30,11 @@ public class LibraryService {
         return new LibraryDto.SelectLibraryListRes(list, list.size());
     }
 
+    public LibraryDto.LibraryRes updateLibrary(LibraryDto.UpdateLibraryReq req) {
+        Library entity = libraryRepository.save(req.toEntity());
+        return new LibraryDto.LibraryRes(entity);
+    }
+
     public LibraryDto.LibraryRes findById(Long no) {
         Library entity = libraryRepository.findById(no).orElseThrow(() -> new IllegalArgumentException(no + "번에 해당하는 도서관이 없습니다."));
         return new LibraryDto.LibraryRes(entity);

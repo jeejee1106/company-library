@@ -36,6 +36,12 @@ public class LibraryController {
         return libraryService.findById(no);
     }
 
+    @Operation(summary = "도서관 수정")
+    @PatchMapping("/{no}")
+    public LibraryDto.LibraryRes updateLibrary(LibraryDto.UpdateLibraryReq req) {
+        return libraryService.updateLibrary(req);
+    }
+
     /**
      * 리턴타입 고민해보기
      * ResponseEntity : 상태코드도 직접 지정해줄 수 있고, HttpHeader? Body?에 정보를 더 담을 수 있다.
