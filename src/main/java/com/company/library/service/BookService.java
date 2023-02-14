@@ -3,6 +3,7 @@ package com.company.library.service;
 import com.company.library.dto.BookDto;
 import com.company.library.entity.Book;
 import com.company.library.repository.BookRepository;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,8 @@ import java.util.Map;
 public class BookService {
 
     private final BookRepository bookRepository;
+    private final JPAQueryFactory jpaQueryFactory;
+
 
     public BookDto.ResponseBookDto save(BookDto.RequestBookDto book){
         Book entity = bookRepository.save(book.toEntity());
@@ -24,8 +27,13 @@ public class BookService {
     }
 
     public BookDto.ResponseBookDto findById(Long bookNo){
-        Book entity = bookRepository.findById(bookNo).orElseThrow(() -> new IllegalArgumentException());
+        Book entity = bookRepository.findById(bookNo).orElseThrow(IllegalArgumentException::new);
         return new BookDto.ResponseBookDto(entity);
+    }
+
+    public BookDto.ResponseBookListDto findBy(){
+        return null;
+        //return jpaQueryFactory.select(Projections.fields(BookDto.class))
     }
 
     public BookDto.ResponseBookListDto findAll(){
@@ -34,7 +42,7 @@ public class BookService {
     }
 
     public BookDto.ResponseBookDto updateById(BookDto.UpdateBookDto book){
-        Book entity = bookRepository.findById(book.getBookNo()).orElseThrow(() -> new IllegalArgumentException());
+        Book entity = bookRepository.findById(book.getBookNo()).orElseThrow(IllegalArgumentException::new);
         entity.update(book.toEntity());
         bookRepository.save(entity);
         return new BookDto.ResponseBookDto(entity);
@@ -42,7 +50,7 @@ public class BookService {
 
     public ResponseEntity<Map<String, Object>> deleteById(Long bookNo){
         Map<String, Object> responseMap = new HashMap<>();
-        bookRepository.delete(bookRepository.findById(bookNo).orElseThrow(() -> new IllegalArgumentException()));
+        bookRepository.delete(bookRepository.findById(bookNo).orElseThrow(IllegalArgumentException::new));
         responseMap.put("status", "200");
         responseMap.put("message", "delete");
         return new ResponseEntity<>(responseMap, HttpStatus.OK);

@@ -1,6 +1,7 @@
 package com.company.library.dto;
 
 import com.company.library.entity.Book;
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -14,7 +15,7 @@ public class BookDto {
     @Getter
     @Setter
     @NoArgsConstructor
-    public class RequestBookDto {
+    public static class RequestBookDto {
 
         private Long bookNo;
         private String title;
@@ -78,7 +79,7 @@ public class BookDto {
     @Getter
     @Setter
     @NoArgsConstructor
-    public class UpdateBookDto {
+    public static class UpdateBookDto {
 
         private Long bookNo;
         private String title;
@@ -106,7 +107,7 @@ public class BookDto {
     @Getter
     @Setter
     @NoArgsConstructor
-    public class BookSearchCondition {
+    public static class BookSearchCondition {
         private Long bookNo;
         private String title;
         private int libraryNo;
@@ -114,6 +115,7 @@ public class BookDto {
         private String reservationStatusYn;
         private String delYn;
 
+        @QueryProjection
         public BookSearchCondition(Book entity){
             this.bookNo = entity.getBookNo();
             this.title = entity.getTitle();
