@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -24,6 +25,12 @@ public class BookController {
     @GetMapping("/{bookNo}")
     public ResponseEntity<BookDto.ResponseBookDto> getBook(@PathVariable Long bookNo){
         return new ResponseEntity<>(bookService.findById(bookNo), HttpStatus.OK);
+    }
+
+    @GetMapping("/test")
+    public List<BookDto.BookSearchCondition> test(){
+        List<BookDto.BookSearchCondition> test = bookService.findBy();
+        return test;
     }
 
     @GetMapping

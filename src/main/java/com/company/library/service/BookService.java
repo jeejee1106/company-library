@@ -2,9 +2,12 @@ package com.company.library.service;
 
 import com.company.library.dto.BookDto;
 import com.company.library.entity.Book;
+import com.company.library.entity.QBook;
+import com.company.library.entity.QLibrary;
 import com.company.library.repository.BookRepository;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BookService {
 
     private final BookRepository bookRepository;
@@ -31,9 +34,10 @@ public class BookService {
         return new BookDto.ResponseBookDto(entity);
     }
 
-    public BookDto.ResponseBookListDto findBy(){
-        return null;
-        //return jpaQueryFactory.select(Projections.fields(BookDto.class))
+    public List<BookDto.BookSearchCondition> findBy(){
+        QBook book = QBook.book;
+        QLibrary library = QLibrary.library;
+        return jpaQueryFactory.select(Projections.fields(BookDto.BookSearchCondition.class, book.bookNo, book.libraryNo)).from(book).on(book.libraryNo.eq(library.no)).fetch();
     }
 
     public BookDto.ResponseBookListDto findAll(){
