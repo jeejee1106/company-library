@@ -34,6 +34,10 @@ public class BookService {
         return new BookDto.ResponseBookDto(entity);
     }
 
+    /**
+     * 생성된 Q파일 이용
+     * @return
+     */
     public List<BookDto.BookSearchCondition> findBy(){
         QBook book = QBook.book;
         QLibrary library = QLibrary.library;
