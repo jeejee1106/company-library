@@ -8,10 +8,12 @@ import com.company.library.repository.BookRepository;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +23,12 @@ import java.util.Map;
 public class BookService {
 
     private final BookRepository bookRepository;
-    private final JPAQueryFactory jpaQueryFactory;
+    EntityManager em;
+    JPAQueryFactory jpaQueryFactory;
+
+    public void init(){
+        jpaQueryFactory = new JPAQueryFactory(em);
+    }
 
 
     public BookDto.ResponseBookDto save(BookDto.RequestBookDto book){
