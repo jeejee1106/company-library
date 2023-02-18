@@ -18,20 +18,22 @@ public class BookDto {
     public static class RequestBookDto {
 
         private Long bookNo;
+        private Long libraryNo;
         private String title;
-        private int libraryNo;
-        private String statusYn;
-        private String reservationStatusYn;
+        private String loanStatusYn;
+        private String lossYn;
+        private String resvStatusYn;
         private String delYn;
 
 
         public Book toEntity(){
             return Book.builder()
                     .bookNo(bookNo)
-                    .title(title)
                     .libraryNo(libraryNo)
-                    .statusYn(statusYn)
-                    .reservationStatusYn(reservationStatusYn)
+                    .title(title)
+                    .loanStatusYn(loanStatusYn)
+                    .lossYn(lossYn)
+                    .resvStatusYn(resvStatusYn)
                     .delYn(delYn)
                     .build();
         }
@@ -43,23 +45,21 @@ public class BookDto {
     @NoArgsConstructor
     public static class ResponseBookDto {
         private Long bookNo;
+        private Long libraryNo;
         private String title;
-        private int libraryNo;
-        private String statusYn;
-        private String reservationStatusYn;
-        private LocalDateTime createDt;
-        private LocalDateTime updateDt;
+        private String loanStatusYn;
+        private String lossYn;
+        private String resvStatusYn;
         private String delYn;
 
-        public ResponseBookDto(Book entity){
-            this.bookNo = entity.getBookNo();
-            this.title = entity.getTitle();
-            this.libraryNo = entity.getLibraryNo();
-            this.statusYn = entity.getStatusYn();
-            this.reservationStatusYn = entity.getReservationStatusYn();
-            this.createDt = entity.getCreateDt();
-            this.updateDt = entity.getUpdateDt();
-            this.delYn = entity.getDelYn();
+        public ResponseBookDto(Long bookNo, Long libraryNo, String title, String loanStatusYn, String lossYn, String resvStatusYn, String delYn){
+            this.bookNo = bookNo;
+            this.libraryNo = libraryNo;
+            this.title = title;
+            this.loanStatusYn = loanStatusYn;
+            this.lossYn = lossYn;
+            this.resvStatusYn = resvStatusYn;
+            this.delYn = delYn;
         }
 
     }
@@ -82,20 +82,22 @@ public class BookDto {
     public static class UpdateBookDto {
 
         private Long bookNo;
+        private Long libraryNo;
         private String title;
-        private int libraryNo;
-        private String statusYn;
-        private String reservationStatusYn;
+        private String loanStatusYn;
+        private String lossYn;
+        private String resvStatusYn;
         private String delYn;
 
 
         public Book toEntity(){
             return Book.builder()
                     .bookNo(bookNo)
-                    .title(title)
                     .libraryNo(libraryNo)
-                    .statusYn(statusYn)
-                    .reservationStatusYn(reservationStatusYn)
+                    .title(title)
+                    .loanStatusYn(loanStatusYn)
+                    .lossYn(lossYn)
+                    .resvStatusYn(resvStatusYn)
                     .delYn(delYn)
                     .build();
         }
@@ -109,20 +111,22 @@ public class BookDto {
     @NoArgsConstructor
     public static class BookSearchCondition {
         private Long bookNo;
+        private Long libraryNo;
         private String title;
-        private int libraryNo;
-        private String statusYn;
-        private String reservationStatusYn;
+        private String loanStatusYn;
+        private String lossYn;
+        private String resvStatusYn;
         private String delYn;
 
         @QueryProjection
-        public BookSearchCondition(Book entity){
-            this.bookNo = entity.getBookNo();
-            this.title = entity.getTitle();
-            this.libraryNo = entity.getLibraryNo();
-            this.statusYn = entity.getStatusYn();
-            this.reservationStatusYn = entity.getReservationStatusYn();
-            this.delYn = entity.getDelYn();
+        public BookSearchCondition(Long bookNo, Long libraryNo, String title, String loanStatusYn, String lossYn, String resvStatusYn, String delYn){
+            this.bookNo = bookNo;
+            this.libraryNo = libraryNo;
+            this.title = title;
+            this.loanStatusYn = loanStatusYn;
+            this.lossYn = lossYn;
+            this.resvStatusYn = resvStatusYn;
+            this.delYn = delYn;
         }
     }
 }

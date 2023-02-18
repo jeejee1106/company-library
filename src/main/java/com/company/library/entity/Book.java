@@ -14,36 +14,40 @@ import javax.persistence.*;
 public class Book extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookNo;
 
+    private Long bookNo;
+    private Long libraryNo;
     private String title;
-    private int libraryNo;
-    private String statusYn;
-    private String reservationStatusYn;
+    private String loanStatusYn;
+    private String lossYn;
+    private String resvStatusYn;
     private String delYn;
 
     @Builder
     public Book(Long bookNo,
+                Long libraryNo,
                 String title,
-                int libraryNo,
-                String statusYn,
-                String reservationStatusYn,
+                String loanStatusYn,
+                String lossYn,
+                String resvStatusYn,
                 String delYn
     ){
         this.bookNo = bookNo;
-        this.title = title;
         this.libraryNo = libraryNo;
-        this.statusYn = statusYn;
-        this.reservationStatusYn = reservationStatusYn;
+        this.title = title;
+        this.loanStatusYn = loanStatusYn;
+        this.lossYn = lossYn;
+        this.resvStatusYn = resvStatusYn;
         this.delYn = delYn;
     }
 
     public void update(Book book) {
         this.bookNo = book.getBookNo();
-        this.title = book.getTitle();
         this.libraryNo = book.getLibraryNo();
-        this.statusYn = book.getStatusYn();
-        this.reservationStatusYn = book.getReservationStatusYn();
+        this.title = book.getTitle();
+        this.loanStatusYn = book.getLoanStatusYn();
+        this.lossYn = book.getLossYn();
+        this.resvStatusYn = book.getResvStatusYn();
         this.delYn = book.getDelYn();
     }
 
