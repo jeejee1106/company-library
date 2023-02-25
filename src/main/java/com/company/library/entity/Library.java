@@ -22,7 +22,8 @@ public class Library extends BaseTimeEntity{
     private String delYn;
 
     @Builder
-    public Library(String name, String delYn) {
+    public Library(Long no, String name, String delYn) {
+        this.no = no;
         this.name = name;
         this.delYn = delYn;
     }

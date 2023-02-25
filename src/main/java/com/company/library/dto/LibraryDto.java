@@ -33,6 +33,32 @@ public class LibraryDto {
         }
     }
 
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    public class UpdateLibraryReq {
+
+        @NotNull(message = "no 값이 비어있음")
+        @Schema(example = "뭐지", description = "도서관 고유 no")
+        private Long no;
+
+        @NotNull(message = "name 값이 비어있음")
+        @Schema(example = "뭐지", description = "도서관명")
+        private String name;
+
+        @NotNull(message = "delYn 값이 비어있음")
+        @Schema(example = "뭐지", description = "삭제여부")
+        private String delYn;
+
+        public Library toEntity() {
+            return Library.builder()
+                    .no(no)
+                    .name(name)
+                    .delYn(delYn)
+                    .build();
+        }
+    }
+
     @NoArgsConstructor
     @Getter
     public static class LibraryRes {
