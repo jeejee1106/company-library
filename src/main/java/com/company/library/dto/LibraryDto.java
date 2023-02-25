@@ -1,7 +1,10 @@
 package com.company.library.dto;
 
 import com.company.library.entity.Library;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,14 +18,14 @@ public class LibraryDto {
     @Getter
     @Setter
     @NoArgsConstructor
-    public class SaveLibraryReq {
+    public static class SaveLibraryReq {
 
         @NotNull(message = "name 값이 비어있음")
-        @Schema(example = "뭐지", description = "도서관명")
+        @Schema(example = "test도서관", description = "도서관 이름")
         private String name;
 
         @NotNull(message = "delYn 값이 비어있음")
-        @Schema(example = "뭐지", description = "삭제여부")
+        @Schema(example = "N", description = "삭제여부")
         private String delYn;
 
         public Library toEntity() {

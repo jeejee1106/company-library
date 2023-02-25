@@ -20,7 +20,7 @@ public class LibraryController {
 
     @Operation(summary = "도서관 등록")
     @PostMapping
-    public LibraryDto.LibraryRes saveLibrary(LibraryDto.SaveLibraryReq req) {
+    public LibraryDto.LibraryRes saveLibrary(@RequestBody LibraryDto.SaveLibraryReq req) {
         return libraryService.saveLibrary(req);
     }
 
