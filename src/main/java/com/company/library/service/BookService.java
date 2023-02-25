@@ -23,6 +23,10 @@ import java.util.Map;
 public class BookService {
 
     private final BookRepository bookRepository;
+    /**
+     * JPAQueryFactory 는 별도의 스프링 빈을 등록하지 않고
+     * EntityManager 는 주입받을 수 있으므로 이용하여 작성한다.
+     */
     EntityManager em;
     JPAQueryFactory jpaQueryFactory;
 
@@ -33,22 +37,52 @@ public class BookService {
 
     public BookDto.ResponseBookDto save(BookDto.RequestBookDto book){
         Book entity = bookRepository.save(book.toEntity());
-        return new BookDto.ResponseBookDto(entity);
+        return null;
+//        return new BookDto.ResponseBookDto(entity);
     }
 
     public BookDto.ResponseBookDto findById(Long bookNo){
         Book entity = bookRepository.findById(bookNo).orElseThrow(IllegalArgumentException::new);
-        return new BookDto.ResponseBookDto(entity);
+        //return new BookDto.ResponseBookDto(entity);
+        return null;
+    }
+
+    public void put(BookDto.RequestBookDto book){
+        Book entity = bookRepository.findById(book.getBookNo()).orElseThrow(IllegalArgumentException::new);
+
     }
 
     /**
      * 생성된 Q파일 이용
      * @return
      */
-    public List<BookDto.BookSearchCondition> findBy(){
-        QBook book = QBook.book;
+    public List<BookDto.ResponseBookDto> findBy(BookDto.BookSearchCondition requestBookDto){
+        QBook bo = QBook.book;
+        BookDto.ResponseBookDto book = new BookDto.ResponseBookDto();
         QLibrary library = QLibrary.library;
-        return jpaQueryFactory.select(Projections.fields(BookDto.BookSearchCondition.class, book.bookNo, book.libraryNo)).from(book).on(book.libraryNo.eq(library.no)).fetch();
+        return /*jpaQueryFactory.select(Projections.bean(BookDto.ResponseBookDto.class,
+                        book.getBookNo(),
+                        book.getTitle(),
+                        book.getLibraryNo(),
+                        book.getStatusYn(),
+                        book.getReservationStatusYn(),
+                        book.getCreateDt(),
+                        book.getUpdateDt(),
+                        book.getDelYn())).from(book)
+                .innerJoin(library)
+                .on(library.no.eq(requestBookDto.getLibraryNo()))
+                .fetch();*/ null;
+
+                /*jpaQueryFactory.select(new BookDto.ResponseBookListDto(
+                book.bookNo, book.libraryNo
+        ))*/
+                /*.select(Projections.fields(
+                                BookDto.ResponseBookListDto.class,
+                                book.bookNo,
+                                book.libraryNo))
+                .from(book)
+                .on(library.no.eq(requestBookDto.getLibraryNo()))
+                .fetch();*/
     }
 
     public BookDto.ResponseBookListDto findAll(){
@@ -60,7 +94,8 @@ public class BookService {
         Book entity = bookRepository.findById(book.getBookNo()).orElseThrow(IllegalArgumentException::new);
         entity.update(book.toEntity());
         bookRepository.save(entity);
-        return new BookDto.ResponseBookDto(entity);
+        //return new BookDto.ResponseBookDto(entity);
+        return null;
     }
 
     public ResponseEntity<Map<String, Object>> deleteById(Long bookNo){

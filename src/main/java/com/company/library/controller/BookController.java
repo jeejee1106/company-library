@@ -27,11 +27,12 @@ public class BookController {
         return new ResponseEntity<>(bookService.findById(bookNo), HttpStatus.OK);
     }
 
-    @GetMapping("/test")
-    public List<BookDto.BookSearchCondition> test(){
-        List<BookDto.BookSearchCondition> test = bookService.findBy();
+   /* @GetMapping("/test")
+    public List<BookDto.ResponseBookDto> test(BookDto.BookSearchCondition book){
+        List<BookDto.ResponseBookDto> test = bookService.findBy(book);
         return test;
-    }
+    }*/
+
 
     @GetMapping
     public ResponseEntity<BookDto.ResponseBookListDto> getAllBooks(){
