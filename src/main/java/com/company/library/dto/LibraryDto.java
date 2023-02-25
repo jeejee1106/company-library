@@ -40,7 +40,7 @@ public class LibraryDto {
 
         @NotNull(message = "no 값이 비어있음")
         @Schema(example = "뭐지", description = "도서관 고유 no")
-        private Long no;
+        private Long libraryNo;
 
         @NotNull(message = "name 값이 비어있음")
         @Schema(example = "뭐지", description = "도서관명")
@@ -52,7 +52,7 @@ public class LibraryDto {
 
         public Library toEntity() {
             return Library.builder()
-                    .no(no)
+                    .libraryNo(libraryNo)
                     .name(name)
                     .delYn(delYn)
                     .build();
@@ -62,14 +62,14 @@ public class LibraryDto {
     @NoArgsConstructor
     @Getter
     public static class LibraryRes {
-        private Long no;
+        private Long libraryNo;
         private String name;
         private LocalDateTime createDt;
         private LocalDateTime updateDt;
         private String delYn;
 
         public LibraryRes(Library entity) {
-            this.no = entity.getNo();
+            this.libraryNo = entity.getLibraryNo();
             this.name = entity.getName();
             this.createDt = entity.getCreateDt();
             this.updateDt = entity.getUpdateDt();

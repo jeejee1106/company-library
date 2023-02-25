@@ -1,25 +1,45 @@
 package com.company.library.entity;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
+@Getter
+@NoArgsConstructor
 public class Reservation {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long no;
+    private Long reservationNo;
+
+    @Column(nullable = false)
     private int bookNo;
+
+    @Column(nullable = false)
     private int userNo;
+
+    @Column(nullable = false)
     private int status;
-    private LocalDateTime createDate;
-    private LocalDateTime updateDate;
 
+    private String statusMemo;
 
+    private LocalDateTime reservationDt;
+    private LocalDateTime updateDt;
+
+    @Builder
+    public Reservation(Long reservationNo, int bookNo, int userNo, int status, String statusMemo, LocalDateTime reservationDt, LocalDateTime updateDt) {
+        this.reservationNo = reservationNo;
+        this.bookNo = bookNo;
+        this.userNo = userNo;
+        this.status = status;
+        this.statusMemo = statusMemo;
+        this.reservationDt = reservationDt;
+        this.updateDt = updateDt;
+    }
 
 }

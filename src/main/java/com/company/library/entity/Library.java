@@ -13,7 +13,7 @@ public class Library extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long no;
+    private Long libraryNo;
 
     @Column(nullable = false)
     private String name;
@@ -22,8 +22,8 @@ public class Library extends BaseTimeEntity{
     private String delYn;
 
     @Builder
-    public Library(Long no, String name, String delYn) {
-        this.no = no;
+    public Library(Long libraryNo, String name, String delYn) {
+        this.libraryNo = libraryNo;
         this.name = name;
         this.delYn = delYn;
     }
