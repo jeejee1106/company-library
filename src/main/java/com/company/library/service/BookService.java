@@ -5,10 +5,8 @@ import com.company.library.entity.Book;
 import com.company.library.entity.QBook;
 import com.company.library.entity.QLibrary;
 import com.company.library.repository.BookRepository;
-import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -37,14 +35,12 @@ public class BookService {
 
     public BookDto.ResponseBookDto save(BookDto.RequestBookDto book){
         Book entity = bookRepository.save(book.toEntity());
-        return null;
-//        return new BookDto.ResponseBookDto(entity);
+        return new BookDto.ResponseBookDto(entity);
     }
 
     public BookDto.ResponseBookDto findById(Long bookNo){
         Book entity = bookRepository.findById(bookNo).orElseThrow(IllegalArgumentException::new);
-        //return new BookDto.ResponseBookDto(entity);
-        return null;
+        return new BookDto.ResponseBookDto(entity);
     }
 
     public void put(BookDto.RequestBookDto book){
@@ -91,11 +87,8 @@ public class BookService {
     }
 
     public BookDto.ResponseBookDto updateById(BookDto.UpdateBookDto book){
-        Book entity = bookRepository.findById(book.getBookNo()).orElseThrow(IllegalArgumentException::new);
-        entity.update(book.toEntity());
-        bookRepository.save(entity);
-        //return new BookDto.ResponseBookDto(entity);
-        return null;
+        Book entity = bookRepository.save(book.toEntity());
+        return new BookDto.ResponseBookDto(entity);
     }
 
     public ResponseEntity<Map<String, Object>> deleteById(Long bookNo){

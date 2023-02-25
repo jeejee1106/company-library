@@ -12,10 +12,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @DynamicUpdate //변경 필드만 반영
 public class Book extends BaseTimeEntity{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookNo;
+    @Column(nullable = false)
     private Long libraryNo;
     private String title;
     private String loanStatusYn;
@@ -24,32 +24,14 @@ public class Book extends BaseTimeEntity{
     private String delYn;
 
     @Builder
-    public Book(Long bookNo,
-                Long libraryNo,
-                String title,
-                String loanStatusYn,
-                String lossYn,
-                String resvStatusYn,
-                String delYn
-    ){
-        this.bookNo = bookNo;
-        this.libraryNo = libraryNo;
-        this.title = title;
-        this.loanStatusYn = loanStatusYn;
-        this.lossYn = lossYn;
-        this.resvStatusYn = resvStatusYn;
-        this.delYn = delYn;
+    public Book(Book book){
+        this.bookNo = book.bookNo;
+        this.libraryNo = book.libraryNo;
+        this.title = book.title;
+        this.loanStatusYn = book.loanStatusYn;
+        this.lossYn = book.lossYn;
+        this.resvStatusYn = book.resvStatusYn;
+        this.delYn = book.delYn;
     }
-
-    public void update(Book book) {
-        this.bookNo = book.getBookNo();
-        this.libraryNo = book.getLibraryNo();
-        this.title = book.getTitle();
-        this.loanStatusYn = book.getLoanStatusYn();
-        this.lossYn = book.getLossYn();
-        this.resvStatusYn = book.getResvStatusYn();
-        this.delYn = book.getDelYn();
-    }
-
 
 }

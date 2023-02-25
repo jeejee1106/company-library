@@ -2,14 +2,16 @@ package com.company.library.dto;
 
 import com.company.library.entity.Book;
 import com.querydsl.core.annotations.QueryProjection;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Value;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@NoArgsConstructor
 public class BookDto {
 
     @Getter
@@ -25,17 +27,8 @@ public class BookDto {
         private String resvStatusYn;
         private String delYn;
 
-
         public Book toEntity(){
-            return Book.builder()
-                    .bookNo(bookNo)
-                    .libraryNo(libraryNo)
-                    .title(title)
-                    .loanStatusYn(loanStatusYn)
-                    .lossYn(lossYn)
-                    .resvStatusYn(resvStatusYn)
-                    .delYn(delYn)
-                    .build();
+            return Book.builder().build();
         }
     }
 
@@ -52,14 +45,14 @@ public class BookDto {
         private String resvStatusYn;
         private String delYn;
 
-        public ResponseBookDto(Long bookNo, Long libraryNo, String title, String loanStatusYn, String lossYn, String resvStatusYn, String delYn){
-            this.bookNo = bookNo;
-            this.libraryNo = libraryNo;
-            this.title = title;
-            this.loanStatusYn = loanStatusYn;
-            this.lossYn = lossYn;
-            this.resvStatusYn = resvStatusYn;
-            this.delYn = delYn;
+        public ResponseBookDto(Book book){
+            this.bookNo = book.getBookNo();
+            this.libraryNo = book.getLibraryNo();
+            this.title = book.getTitle();
+            this.loanStatusYn = book.getLoanStatusYn();
+            this.lossYn = book.getLossYn();
+            this.resvStatusYn = book.getResvStatusYn();
+            this.delYn = book.getDelYn();
         }
 
     }
@@ -91,15 +84,7 @@ public class BookDto {
 
 
         public Book toEntity(){
-            return Book.builder()
-                    .bookNo(bookNo)
-                    .libraryNo(libraryNo)
-                    .title(title)
-                    .loanStatusYn(loanStatusYn)
-                    .lossYn(lossYn)
-                    .resvStatusYn(resvStatusYn)
-                    .delYn(delYn)
-                    .build();
+            return Book.builder().build();
         }
     }
 
@@ -119,14 +104,14 @@ public class BookDto {
         private String delYn;
 
         @QueryProjection
-        public BookSearchCondition(Long bookNo, Long libraryNo, String title, String loanStatusYn, String lossYn, String resvStatusYn, String delYn){
-            this.bookNo = bookNo;
-            this.libraryNo = libraryNo;
-            this.title = title;
-            this.loanStatusYn = loanStatusYn;
-            this.lossYn = lossYn;
-            this.resvStatusYn = resvStatusYn;
-            this.delYn = delYn;
+        public BookSearchCondition(Book book){
+            this.bookNo = book.getBookNo();
+            this.libraryNo = book.getLibraryNo();
+            this.title = book.getTitle();
+            this.loanStatusYn = book.getLoanStatusYn();
+            this.lossYn = book.getLossYn();
+            this.resvStatusYn = book.getResvStatusYn();
+            this.delYn = book.getDelYn();
         }
     }
 }
