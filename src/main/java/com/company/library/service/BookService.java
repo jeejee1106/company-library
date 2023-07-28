@@ -1,6 +1,8 @@
 package com.company.library.service;
 
 import com.company.library.dto.BookDto;
+import com.company.library.dto.book.BookResponse;
+import com.company.library.dto.book.SaveBookRequest;
 import com.company.library.entity.Book;
 import com.company.library.entity.QBook;
 import com.company.library.entity.QLibrary;
@@ -33,14 +35,13 @@ public class BookService {
     }
 
 
-    public BookDto.ResponseBookDto save(BookDto.RequestBookDto book){
-        Book entity = bookRepository.save(book.toEntity());
-        return new BookDto.ResponseBookDto(entity);
+    public Long save(SaveBookRequest book){
+        return bookRepository.save(book.toEntity()).getBookNo();
     }
 
-    public BookDto.ResponseBookDto findById(Long bookNo){
-        Book entity = bookRepository.findById(bookNo).orElseThrow(IllegalArgumentException::new);
-        return new BookDto.ResponseBookDto(entity);
+    public BookResponse findById(Long bookNo){
+        Book book = bookRepository.findById(bookNo).orElseThrow(IllegalArgumentException::new);
+        return new BookResponse(book);
     }
 
     public void put(BookDto.RequestBookDto book){

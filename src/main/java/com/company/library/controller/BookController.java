@@ -1,15 +1,18 @@
 package com.company.library.controller;
 
 import com.company.library.dto.BookDto;
+import com.company.library.dto.book.BookResponse;
+import com.company.library.dto.book.SaveBookRequest;
 import com.company.library.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@RestController
+@RestControllerAdvice
 @RequiredArgsConstructor
 @RequestMapping("/book")
 public class BookController {
@@ -17,21 +20,16 @@ public class BookController {
     final BookService bookService;
 
     @PostMapping
-    public ResponseEntity<BookDto.ResponseBookDto> save(BookDto.RequestBookDto book){
-        return new ResponseEntity<>(bookService.save(book), HttpStatus.OK);
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public Long save(@RequestBody SaveBookRequest book){
+        return bookService.save(book);
     }
 
     @GetMapping("/{bookNo}")
-    public ResponseEntity<BookDto.ResponseBookDto> getBook(@PathVariable Long bookNo){
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public ResponseEntity<BookResponse> getBook(@PathVariable Long bookNo){
         return new ResponseEntity<>(bookService.findById(bookNo), HttpStatus.OK);
     }
-
-   /* @GetMapping("/test")
-    public List<BookDto.ResponseBookDto> test(BookDto.BookSearchCondition book){
-        List<BookDto.ResponseBookDto> test = bookService.findBy(book);
-        return test;
-    }*/
-
 
     @GetMapping
     public ResponseEntity<BookDto.ResponseBookListDto> getAllBooks(){
